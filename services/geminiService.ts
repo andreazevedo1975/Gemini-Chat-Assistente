@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, GenerateContentResponse, Modality } from "@google/genai";
 
 const API_KEY = process.env.API_KEY;
@@ -22,7 +21,7 @@ export const analyzeDocument = async (text: string, useThinkingMode: boolean): P
     
     const response = await ai.models.generateContent({
         model,
-        contents: `Analyze the following document and provide a comprehensive summary:\n\n${text}`,
+        contents: `Analise o seguinte documento e forneça um resumo abrangente:\n\n${text}`,
         config,
     });
     return response.text;
@@ -61,7 +60,7 @@ export const editImage = async (prompt: string, image: { data: string; mimeType:
     return null;
 };
 
-export const getTextToSpeech = async (prompt: string): Promise<string | undefined> => {
+export const getTextToSpeech = async (prompt: string, voiceName: string = 'Kore'): Promise<string | undefined> => {
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
         contents: [{ parts: [{ text: prompt }] }],
@@ -69,7 +68,7 @@ export const getTextToSpeech = async (prompt: string): Promise<string | undefine
             responseModalities: [Modality.AUDIO],
             speechConfig: {
                 voiceConfig: {
-                    prebuiltVoiceConfig: { voiceName: 'Kore' },
+                    prebuiltVoiceConfig: { voiceName },
                 },
             },
         },

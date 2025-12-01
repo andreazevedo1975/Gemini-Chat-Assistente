@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import ChatBot from './components/ChatBot';
 import ImageEditor from './components/ImageEditor';
@@ -42,16 +41,16 @@ const App: React.FC = () => {
   return (
     <div className="flex h-screen bg-gray-900 text-gray-100">
       <aside className="w-64 flex-shrink-0 bg-gray-800 p-4 space-y-2 flex flex-col">
-        <h1 className="text-2xl font-bold text-white mb-6 px-2">Gemini Suite</h1>
+        <h1 className="text-2xl font-bold text-white mb-6 px-2">Suíte Gemini</h1>
         <nav className="flex-grow">
-          <NavItem feature="CHAT" label="Chat Assistant" icon={<ChatIcon />} />
-          <NavItem feature="IMAGE_EDIT" label="Image Editor" icon={<ImageIcon />} />
-          <NavItem feature="DOC_ANALYZE" label="Doc Analyzer" icon={<DocumentIcon />} />
-          <NavItem feature="WEB_SEARCH" label="Web Search" icon={<SearchIcon />} />
-          <NavItem feature="TTS" label="Text to Speech" icon={<SpeakerIcon />} />
-          <NavItem feature="QUICK_QA" label="Quick Q&A" icon={<LightningIcon />} />
+          <NavItem feature="CHAT" label="Assistente de Chat" icon={<ChatIcon />} />
+          <NavItem feature="IMAGE_EDIT" label="Editor de Imagens" icon={<ImageIcon />} />
+          <NavItem feature="DOC_ANALYZE" label="Analisador de Docs" icon={<DocumentIcon />} />
+          <NavItem feature="WEB_SEARCH" label="Busca na Web" icon={<SearchIcon />} />
+          <NavItem feature="TTS" label="Texto para Fala" icon={<SpeakerIcon />} />
+          <NavItem feature="QUICK_QA" label="Perguntas Rápidas" icon={<LightningIcon />} />
         </nav>
-        <div className="text-xs text-gray-500 text-center">Built with Gemini</div>
+        <div className="text-xs text-gray-500 text-center">Criado com Gemini</div>
       </aside>
       <main className="flex-1 overflow-y-auto p-6 md:p-8 lg:p-10">
         {renderFeature()}

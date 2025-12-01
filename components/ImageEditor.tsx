@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { editImage } from '../services/geminiService';
 
@@ -16,7 +15,7 @@ const fileToGenerativePart = async (file: File) => {
 
 
 const ImageEditor: React.FC = () => {
-    const [prompt, setPrompt] = useState<string>('Add a retro filter');
+    const [prompt, setPrompt] = useState<string>('Adicione um filtro retrô');
     const [originalImage, setOriginalImage] = useState<string | null>(null);
     const [originalImageFile, setOriginalImageFile] = useState<File | null>(null);
     const [editedImage, setEditedImage] = useState<string | null>(null);
@@ -34,7 +33,7 @@ const ImageEditor: React.FC = () => {
 
     const handleSubmit = async () => {
         if (!prompt || !originalImageFile) {
-            setError('Please upload an image and enter a prompt.');
+            setError('Por favor, envie uma imagem e digite um comando.');
             return;
         }
         setIsLoading(true);
@@ -47,10 +46,10 @@ const ImageEditor: React.FC = () => {
             if(result) {
                 setEditedImage(result);
             } else {
-                setError("Failed to generate edited image. The model might not have returned an image.");
+                setError("Falha ao gerar imagem editada. O modelo pode não ter retornado uma imagem.");
             }
         } catch (e) {
-            setError(e instanceof Error ? e.message : 'An unknown error occurred.');
+            setError(e instanceof Error ? e.message : 'Ocorreu um erro desconhecido.');
         } finally {
             setIsLoading(false);
         }
@@ -59,8 +58,8 @@ const ImageEditor: React.FC = () => {
     return (
         <div className="h-full flex flex-col gap-6">
             <div className="p-4 bg-gray-800/50 rounded-lg">
-                <h2 className="text-xl font-semibold text-white">Gemini Image Editor</h2>
-                <p className="text-sm text-gray-400 mt-1">Upload an image and tell Gemini how to change it.</p>
+                <h2 className="text-xl font-semibold text-white">Editor de Imagens Gemini</h2>
+                <p className="text-sm text-gray-400 mt-1">Envie uma imagem e diga ao Gemini como alterá-la.</p>
             </div>
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 overflow-hidden">
                 <div className="flex flex-col bg-gray-800/50 rounded-lg p-4 gap-4">
@@ -69,13 +68,13 @@ const ImageEditor: React.FC = () => {
                         {originalImage ? (
                             <img src={originalImage} alt="Original" className="max-h-full max-w-full object-contain" />
                         ) : (
-                            <p className="text-gray-500">Upload an image to start</p>
+                            <p className="text-gray-500">Envie uma imagem para começar</p>
                         )}
                     </div>
                      <input type="file" accept="image/*" onChange={handleImageUpload} className="text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
                 </div>
                 <div className="flex flex-col bg-gray-800/50 rounded-lg p-4 gap-4">
-                    <h3 className="font-semibold text-lg">Edited</h3>
+                    <h3 className="font-semibold text-lg">Editada</h3>
                     <div className="flex-1 flex items-center justify-center border-2 border-dashed border-gray-600 rounded-lg bg-gray-900/50 relative">
                         {isLoading && (
                             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -83,9 +82,9 @@ const ImageEditor: React.FC = () => {
                             </div>
                         )}
                         {editedImage ? (
-                            <img src={editedImage} alt="Edited" className="max-h-full max-w-full object-contain" />
+                            <img src={editedImage} alt="Editada" className="max-h-full max-w-full object-contain" />
                         ) : (
-                            <p className="text-gray-500">Your edited image will appear here</p>
+                            <p className="text-gray-500">Sua imagem editada aparecerá aqui</p>
                         )}
                     </div>
                     {error && <p className="text-red-400 text-sm">{error}</p>}
@@ -96,7 +95,7 @@ const ImageEditor: React.FC = () => {
                     type="text"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="e.g., Make the sky purple"
+                    placeholder="ex: Deixe o céu roxo"
                     className="flex-1 p-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none w-full"
                 />
                 <button
@@ -104,7 +103,7 @@ const ImageEditor: React.FC = () => {
                     disabled={isLoading || !originalImageFile}
                     className="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed transition-colors font-semibold"
                 >
-                    {isLoading ? 'Generating...' : 'Generate'}
+                    {isLoading ? 'Gerando...' : 'Gerar'}
                 </button>
             </div>
         </div>

@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { getGroundedSearch } from '../services/geminiService';
 
 const WebSearch: React.FC = () => {
-    const [prompt, setPrompt] = useState<string>('Who won the latest F1 race?');
+    const [prompt, setPrompt] = useState<string>('Quem ganhou a última corrida de F1?');
     const [result, setResult] = useState<string>('');
     const [sources, setSources] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,7 +20,7 @@ const WebSearch: React.FC = () => {
             setResult(text);
             setSources(sources);
         } catch (e) {
-            setError(e instanceof Error ? e.message : 'An unknown error occurred.');
+            setError(e instanceof Error ? e.message : 'Ocorreu um erro desconhecido.');
         } finally {
             setIsLoading(false);
         }
@@ -30,8 +29,8 @@ const WebSearch: React.FC = () => {
     return (
          <div className="h-full flex flex-col gap-6">
             <div className="p-4 bg-gray-800/50 rounded-lg">
-                <h2 className="text-xl font-semibold text-white">Grounded Web Search</h2>
-                <p className="text-sm text-gray-400 mt-1">Ask questions about recent events. Gemini will use Google Search to provide up-to-date answers with sources.</p>
+                <h2 className="text-xl font-semibold text-white">Busca na Web Fundamentada</h2>
+                <p className="text-sm text-gray-400 mt-1">Faça perguntas sobre eventos recentes. O Gemini usará a Busca do Google para fornecer respostas atualizadas com fontes.</p>
             </div>
             <div className="bg-gray-800/50 rounded-lg p-4 flex flex-col md:flex-row gap-4 items-center">
                  <input
@@ -39,7 +38,7 @@ const WebSearch: React.FC = () => {
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                    placeholder="Ask about something current..."
+                    placeholder="Pergunte sobre algo atual..."
                     className="flex-1 p-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none w-full"
                 />
                 <button
@@ -47,7 +46,7 @@ const WebSearch: React.FC = () => {
                     disabled={isLoading || !prompt.trim()}
                     className="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed transition-colors font-semibold"
                 >
-                    {isLoading ? 'Searching...' : 'Search'}
+                    {isLoading ? 'Buscando...' : 'Buscar'}
                 </button>
             </div>
             <div className="flex-1 bg-gray-800/50 rounded-lg p-4 overflow-y-auto">
@@ -62,7 +61,7 @@ const WebSearch: React.FC = () => {
                         <p className="whitespace-pre-wrap">{result}</p>
                         {sources.length > 0 && (
                             <div className="mt-6">
-                                <h4 className="font-semibold">Sources:</h4>
+                                <h4 className="font-semibold">Fontes:</h4>
                                 <ul className="list-disc pl-5 space-y-1 text-sm">
                                     {sources.map((source, index) => source.web && (
                                         <li key={index}>

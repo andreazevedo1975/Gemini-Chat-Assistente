@@ -1,6 +1,6 @@
 {
-  "name": "Gemini Multi-Modal Suite",
-  "description": "An advanced web application showcasing the versatile capabilities of the Gemini API, including text-based image editing, chat, document analysis with thinking mode, grounded web search, and text-to-speech functionality.",
+  "name": "Suíte Multi-Modal Gemini",
+  "description": "Uma aplicação web avançada exibindo as capacidades versáteis da API Gemini, incluindo edição de imagens via texto, chat, análise de documentos com modo pensamento, busca na web fundamentada e funcionalidade de texto para fala.",
   "requestFramePermissions": [
     "microphone"
   ]
